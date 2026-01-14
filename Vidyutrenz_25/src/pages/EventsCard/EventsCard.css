@@ -1,0 +1,482 @@
+/* EventsCard.css - ZOOMED IN & LARGER VERSION */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --neon-red: #ff2a2a;
+  --neon-blue: #00f2ff;
+  --glass-bg: rgba(20, 20, 30, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-white: #ffffff;
+  --text-grey: rgba(255, 255, 255, 0.9);
+}
+
+.ecards-main-container {
+  min-height: 100vh;
+  /* Reduced side padding to let grid expand more */
+  padding: 100px 20px 60px;
+  background-color: #0a0a0f;
+  /* Fallback dark background */
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Header Section */
+.ecards-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ecards-back-btn {
+  position: absolute;
+  left: 20px;
+  /* Moved slightly left */
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-white);
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  /* Larger font */
+  letter-spacing: 1px;
+  padding: 14px 28px;
+  /* Larger button */
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.ecards-back-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) translateX(-5px);
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+}
+
+.ecards-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  /* MASSIVE TITLE */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin: 0;
+  background: linear-gradient(90deg, #fff, var(--neon-blue), #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 3s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.4));
+}
+
+/* --- UPDATED GRID LAYOUT --- */
+.ecards-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  /* FORCE 3 COLUMNS, BUT WIDER CARDS */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  /* Tighter gap to fit wider cards */
+
+  /* INCREASED MAX-WIDTH to cover more screen space */
+  max-width: 1800px;
+  width: 95%;
+  /* Take up 95% of the width */
+  margin: 0 auto;
+}
+
+/* --- ANIMATED CARD STYLES --- */
+.ecards-detail-container {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: fadeUpCard 0.8s ease-out forwards;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transform-style: preserve-3d;
+
+  /* Ensure minimum height for consistency */
+  min-height: 650px;
+
+  /* GPU acceleration */
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Shine Effect Pseudo-element */
+.ecards-detail-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: skewX(-25deg);
+  transition: 0.5s;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ecards-detail-container:hover::before {
+  left: 125%;
+  transition: 0.7s ease-in-out;
+}
+
+/* Hover Effects */
+.ecards-detail-container:hover {
+  transform: translateY(-15px) scale(1.03);
+  /* Larger lift and scale */
+}
+
+/* Themes */
+.ecards-detail-container.theme-blue {
+  border-top: 5px solid var(--neon-blue);
+}
+
+.ecards-detail-container.theme-blue:hover {
+  box-shadow: 0 30px 70px rgba(0, 242, 255, 0.25), 0 0 30px rgba(0, 242, 255, 0.15);
+  border-color: var(--neon-blue);
+}
+
+.ecards-detail-container.theme-red {
+  border-top: 5px solid var(--neon-red);
+}
+
+.ecards-detail-container.theme-red:hover {
+  box-shadow: 0 30px 70px rgba(255, 42, 42, 0.25), 0 0 30px rgba(255, 42, 42, 0.15);
+  border-color: var(--neon-red);
+}
+
+/* --- Image Header --- */
+.ecards-image-header {
+  height: 260px;
+  /* Taller images */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.ecards-image-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  /* GPU acceleration */
+}
+
+.ecards-detail-container:hover .ecards-image-bg {
+  transform: scale(1.15);
+}
+
+.ecards-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--glass-bg));
+  z-index: 2;
+}
+
+/* Content Area */
+.ecards-content-wrapper {
+  padding: 30px 35px 40px;
+  /* Larger padding */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  z-index: 5;
+}
+
+.ecards-event-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  /* Larger Title */
+  font-weight: 800;
+  color: var(--text-white);
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.ecards-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.15rem;
+  /* Larger Description */
+  line-height: 1.6;
+  color: var(--text-grey);
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+/* Info Grid */
+.ecards-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 35px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.3s;
+}
+
+.ecards-detail-container:hover .ecards-info-grid {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ecards-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ecards-info-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  /* Larger Labels */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.theme-blue .ecards-info-label {
+  color: var(--neon-blue);
+}
+
+.theme-red .ecards-info-label {
+  color: var(--neon-red);
+}
+
+.ecards-info-value {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  /* Larger Value Text */
+  color: var(--text-white);
+  font-weight: 700;
+}
+
+/* Buttons */
+.ecards-button-group {
+  display: flex;
+  gap: 20px;
+  margin-top: auto;
+}
+
+.ecards-reg {
+  flex: 2;
+  text-decoration: none;
+}
+
+.ecards-register-btn,
+.ecards-rules-btn {
+  width: 100%;
+  padding: 16px;
+  /* Larger Buttons */
+  border: none;
+  border-radius: 50px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  /* GPU acceleration */
+}
+
+@keyframes btnPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.theme-blue .ecards-register-btn {
+  background: linear-gradient(135deg, var(--neon-blue), #00aaff);
+  color: #000;
+}
+
+.theme-red .ecards-register-btn {
+  background: linear-gradient(135deg, var(--neon-red), #ff6b6b);
+  color: #fff;
+}
+
+.ecards-register-btn:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.2);
+  animation: btnPulse 1.5s infinite;
+}
+
+.ecards-rules-btn {
+  flex: 1;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  /* Thicker border */
+  color: var(--text-white);
+}
+
+.ecards-rules-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--text-white);
+  transform: translateY(-4px);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUpCard {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* Registration Closed Badge */
+.ecards-closed-badge {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, rgba(255, 42, 42, 0.2), rgba(200, 0, 0, 0.3));
+  border: 2px solid var(--neon-red);
+  border-radius: 50px;
+  gap: 8px;
+  animation: closedPulse 2s ease-in-out infinite;
+}
+
+.closed-icon {
+  font-size: 1.5rem;
+}
+
+.closed-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--neon-red);
+  text-shadow: 0 0 10px rgba(255, 42, 42, 0.5);
+}
+
+.closed-reason {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+@keyframes closedPulse {
+
+  0%,
+  100% {
+    border-color: var(--neon-red);
+    box-shadow: 0 0 10px rgba(255, 42, 42, 0.3);
+  }
+
+  50% {
+    border-color: rgba(255, 42, 42, 0.6);
+    box-shadow: 0 0 20px rgba(255, 42, 42, 0.5);
+  }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1400px) {
+  .ecards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* Switch to 2 columns for laptops */
+    max-width: 1200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ecards-main-container {
+    padding: 100px 20px 40px;
+  }
+
+  .ecards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 1 column for mobile */
+  .ecards-image-header {
+    height: 200px;
+  }
+
+  .ecards-title {
+    font-size: 2.8rem;
+  }
+
+  .ecards-back-btn {
+    position: static;
+    transform: none;
+    margin-bottom: 30px;
+  }
+}

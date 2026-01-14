@@ -1,0 +1,283 @@
+/* Events.css - Fixed Centering */
+
+:root {
+  --neon-red: #ff2a2a;
+  --neon-blue: #00f2ff;
+  --glass-bg: rgba(15, 15, 20, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-white: #ffffff;
+}
+
+.events-container {
+  /* --- FIX: Use Flexbox to center the 2 cards perfectly --- */
+  display: flex;
+  flex-direction: column;
+  /* Stack Header and Cards vertically */
+  justify-content: center;
+  /* This ensures they stay in the middle */
+  align-items: center;
+  gap: 60px;
+  /* Space between Header and Cards */
+
+  /* Adjusted padding for better spacing on all screens */
+  padding: 100px 20px 60px;
+  min-height: 150vh;
+
+  /* Background settings matching About page */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.events-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  width: 100%;
+}
+
+/* --- Header Section --- */
+.events-header {
+  text-align: center;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+.events-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(4rem, 7vw, 6rem);
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1;
+
+  /* Red & Blue Smokey Text Effect */
+  background: linear-gradient(90deg, var(--neon-red), #fff, var(--neon-blue));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: smokeShimmer 4s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 42, 42, 0.5)) drop-shadow(0 0 20px rgba(0, 242, 255, 0.5));
+}
+
+.title-underline {
+  width: 150px;
+  height: 6px;
+  background: linear-gradient(90deg, var(--neon-red), var(--neon-blue));
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(255, 42, 42, 0.6);
+  margin: 0 auto;
+}
+
+@keyframes smokeShimmer {
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* --- Event Card Styles --- */
+.event-card {
+  /* Flexible width settings */
+  flex: 0 1 550px;
+  /* grow | shrink | basis */
+  width: 100%;
+  max-width: 550px;
+  height: 600px;
+
+  position: relative;
+
+  /* Ensure background moves with card zoom */
+  background-attachment: scroll;
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* Glassmorphism base */
+  border: 1px solid var(--glass-border);
+
+  /* Smooth Transition for the "Huge" effect */
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Entrance Animation */
+  opacity: 0;
+  animation: slideUpFade 0.8s ease-out forwards;
+}
+
+/* Stagger entrance animations */
+.event-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.event-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+/* --- HOLOGRAPHIC SHINE EFFECT --- */
+.event-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.1),
+      transparent);
+  transform: skewX(-25deg);
+  transition: 0s;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* --- THEMES --- */
+
+/* RED THEME */
+.event-card.red-theme {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-bottom: 6px solid var(--neon-red);
+}
+
+.event-card.red-theme:hover {
+  box-shadow: 0 20px 60px rgba(255, 42, 42, 0.4), 0 0 30px rgba(255, 42, 42, 0.2);
+  border-color: var(--neon-red);
+}
+
+.event-card.red-theme h3 {
+  text-shadow: 0 0 15px rgba(255, 42, 42, 0.8);
+}
+
+/* BLUE THEME */
+.event-card.blue-theme {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-bottom: 6px solid var(--neon-blue);
+}
+
+.event-card.blue-theme:hover {
+  box-shadow: 0 20px 60px rgba(0, 242, 255, 0.4), 0 0 30px rgba(0, 242, 255, 0.2);
+  border-color: var(--neon-blue);
+}
+
+.event-card.blue-theme h3 {
+  text-shadow: 0 0 15px rgba(0, 242, 255, 0.8);
+}
+
+/* --- HOVER INTERACTIONS --- */
+.event-card:hover {
+  /* Lift up and scale massively */
+  transform: translateY(-20px) scale(1.05);
+  z-index: 10;
+}
+
+/* Trigger the shine sweep on hover */
+.event-card:hover::before {
+  left: 150%;
+  transition: 0.8s ease-in-out;
+}
+
+/* --- OVERLAY & TEXT --- */
+.event-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.95) 100%);
+  transition: all 0.5s ease;
+}
+
+/* Text Animations */
+.event-overlay h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.event-overlay p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(5px);
+  transition: all 0.5s ease 0.1s;
+}
+
+/* Reveal Text on Hover */
+.event-card:hover .event-overlay {
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      #000 100%);
+}
+
+.event-card:hover h3 {
+  transform: translateY(0) scale(1.1);
+  letter-spacing: 5px;
+}
+
+.event-card:hover p {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* --- KEYFRAMES --- */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+@media (max-width: 900px) {
+  .events-container {
+    flex-direction: column;
+    padding: 120px 20px;
+    gap: 50px;
+  }
+
+  .event-card {
+    /* On mobile, take full width but maintain max-width limit */
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: 500px;
+    height: 450px;
+  }
+
+  .event-overlay h3 {
+    font-size: 2rem;
+  }
+}

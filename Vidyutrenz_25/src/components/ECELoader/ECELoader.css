@@ -1,0 +1,391 @@
+/* Import bold font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+
+/* Ensure no body/html margins interfere */
+body:has(.ece-loader),
+html:has(.ece-loader) {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  width: 100%;
+  height: 100%;
+}
+
+/* CONTAINER */
+.ece-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #001a33;
+  /* Dark blueprint blue */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  overflow: hidden;
+  /* CRITICAL: Multiple approaches to ensure 100% zoom */
+  zoom: 1 !important;
+  transform: scale(1);
+  transform-origin: top left;
+  /* Smoother fade out to prevent white flash */
+  transition: opacity 0.8s ease-in-out, background-color 1s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ece-loader.powered-up {
+  background-color: #050505;
+}
+
+/* ANIMATED BLUEPRINT GRID BACKGROUND */
+.blueprint-grid {
+  position: absolute;
+  inset: -100%;
+  /* Make larger than screen for scrolling */
+  background-image:
+    linear-gradient(rgba(100, 200, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 200, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transition: opacity 1s;
+  animation: scrollingGrid 20s linear infinite;
+}
+
+@keyframes scrollingGrid {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(40px, 40px);
+  }
+
+  /* Move diagonally by one grid square size */
+}
+
+.powered-up .blueprint-grid {
+  opacity: 0.15;
+}
+
+/* MAIN SCHEMATIC AREA - MASSIVE SIZE */
+.schematic-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin-bottom: 80px;
+  /* Increased spacing to prevent overlap with status text */
+  /* SCALE UP FOR BETTER VISIBILITY AT 100% ZOOM */
+  transform: scale(3.2);
+  transform-origin: center center;
+  z-index: 1;
+  /* Lower z-index than status panel */
+}
+
+@media (max-width: 768px) {
+  .schematic-container {
+    transform: scale(2.0);
+  }
+}
+
+
+/* --- THE CENTRAL CHIP --- */
+/* --- THE CENTRAL CHIP --- */
+.chip-schematic {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* I slightly increased width/height so the text fits perfectly in the center */
+  width: 180px;
+  /* Was 140px */
+  height: 90px;
+  /* Was 70px */
+
+  background: rgba(0, 26, 51, 0.8);
+  border: 2px dashed #64c8ff;
+
+  /* This ensures perfect centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10;
+  transition: all 1s;
+}
+
+/* BOLD FONT FOR SYMPO-2026 */
+.chip-label {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  /* Slightly larger for visibility */
+  color: #64c8ff;
+  letter-spacing: 2px;
+
+  /* Ensures text stays centered even if it wraps */
+  text-align: center;
+  width: 100%;
+  margin: 0;
+
+  transition: color 1s, text-shadow 1s;
+}
+
+/* Adjust pins to match new size */
+.pin-l1 {
+  left: -15px;
+  top: 20px;
+}
+
+.pin-l2 {
+  left: -15px;
+  bottom: 20px;
+}
+
+.pin-r1 {
+  right: -15px;
+  top: 20px;
+}
+
+.pin-r2 {
+  right: -15px;
+  bottom: 20px;
+}
+
+/* NEW BOLD FONT FOR SYMPO-2026 */
+.chip-label {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  /* Extra Bold */
+  font-size: 1.2rem;
+  color: #64c8ff;
+  letter-spacing: 1px;
+  transition: color 1s, text-shadow 1s;
+}
+
+.chip-pin {
+  position: absolute;
+  width: 15px;
+  height: 4px;
+  background: #64c8ff;
+  transition: background 1s;
+}
+
+.pin-l1 {
+  left: -15px;
+  top: 15px;
+}
+
+.pin-l2 {
+  left: -15px;
+  bottom: 15px;
+}
+
+.pin-r1 {
+  right: -15px;
+  top: 15px;
+}
+
+.pin-r2 {
+  right: -15px;
+  bottom: 15px;
+}
+
+/* CHIP POWER UP STATE */
+.powered-up .chip-schematic {
+  border: 3px solid #00f2ff;
+  background: #000;
+  box-shadow: 0 0 30px #00f2ff, inset 0 0 15px #00f2ff;
+}
+
+.powered-up .chip-label {
+  color: #fff;
+  text-shadow: 0 0 15px #00f2ff, 0 0 30px #00f2ff;
+}
+
+.powered-up .chip-pin {
+  background: #00f2ff;
+  box-shadow: 0 0 10px #00f2ff;
+}
+
+
+/* --- SVG TRACES & COMPONENTS --- */
+.schematic-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #64c8ff;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  transition: stroke 1s;
+}
+
+.schematic-trace {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: drawSchematic 2s ease-out forwards;
+}
+
+@keyframes drawSchematic {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.trace-1 {
+  animation-delay: 0.2s;
+}
+
+.trace-2 {
+  animation-delay: 0.4s;
+}
+
+.trace-3 {
+  animation-delay: 0.8s;
+}
+
+.trace-4 {
+  animation-delay: 1.0s;
+}
+
+.component {
+  stroke: #64c8ff;
+  stroke-width: 2px;
+  fill: #001a33;
+  opacity: 0;
+  animation: popComponent 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+}
+
+@keyframes popComponent {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.r1 {
+  animation-delay: 0.3s;
+  transform-origin: 50px 100px;
+}
+
+.c1 {
+  animation-delay: 0.5s;
+  transform-origin: 50px 200px;
+}
+
+.r2 {
+  animation-delay: 0.9s;
+  transform-origin: 350px 100px;
+}
+
+.g1 {
+  animation-delay: 1.2s;
+  transform-origin: 350px 220px;
+}
+
+/* --- POWER SURGE (NEON EFFECT) --- */
+.powered-up .schematic-trace {
+  stroke: #00f2ff;
+  filter: drop-shadow(0 0 5px #00f2ff);
+  stroke-dasharray: 40 300;
+  stroke-dashoffset: 300;
+  animation: powerSurgeFlow 1.5s linear infinite;
+}
+
+/* Red for inputs */
+.powered-up .trace-1,
+.powered-up .trace-2 {
+  stroke: #ff2a2a;
+  filter: drop-shadow(0 0 8px #ff2a2a);
+}
+
+@keyframes powerSurgeFlow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.powered-up .component {
+  stroke: #00f2ff;
+  fill: #000;
+  filter: drop-shadow(0 0 5px #00f2ff);
+  transition: all 1s;
+}
+
+.powered-up .r1,
+.powered-up .c1 {
+  stroke: #ff2a2a;
+  filter: drop-shadow(0 0 5px #ff2a2a);
+}
+
+/* --- STATUS PANEL (Scaled up slightly) --- */
+.status-panel {
+  position: relative;
+  /* Required for z-index to work */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: 'Courier New', monospace;
+  color: #64c8ff;
+  transform: scale(1.2);
+  z-index: 100;
+  /* High z-index to stay above schematic traces */
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  background: #64c8ff;
+  border-radius: 50%;
+  animation: blinkBusy 0.5s infinite alternate;
+}
+
+@keyframes blinkBusy {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.powered-up .status-panel {
+  color: #00f2ff;
+  text-shadow: 0 0 5px #00f2ff;
+}
+
+.powered-up .status-indicator {
+  background: #00f2ff;
+  box-shadow: 0 0 10px #00f2ff;
+  animation: blinkReady 1s infinite alternate;
+}
+
+@keyframes blinkReady {
+  from {
+    box-shadow: 0 0 5px #00f2ff;
+  }
+
+  to {
+    box-shadow: 0 0 20px #00f2ff;
+  }
+}

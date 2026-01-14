@@ -1,0 +1,1098 @@
+/* Home.css - FINAL REALISTIC SMOKE */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Rajdhani:wght@500;700&family=Audiowide&display=swap');
+
+:root {
+  --neon-red: #ff003c;
+  --neon-blue: #00f2ff;
+  --volt-white: #ffffff;
+  --bg-dark-translucent: rgba(5, 10, 25, 0.6);
+}
+
+
+
+/* GLOBAL RESET */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  scroll-behavior: smooth;
+  will-change: scroll-position;
+  /* Smooth scrolling for better UX */
+}
+
+/* MAIN CONTAINER */
+.home-container {
+  height: 150vh;
+  /* Exact viewport height */
+  width: 100%;
+  overflow-y: scroll;
+  /* This element scrolls */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+  background-color: transparent;
+  /* CRITICAL: Transparent so fixed BG shows */
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  /* Smooth scrolling on iOS/Safari */
+  /* Removed scroll-snap for completely free-flowing scroll */
+}
+
+.home-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- SECTIONS & LAYOUT --- */
+.home-section {
+  position: relative;
+  z-index: 10;
+  height: 150vh;
+  /* Changed from min-height to exact height */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  /* Removed scroll-snap-align for smooth scrolling */
+}
+
+/* --- HERO LAYOUT --- */
+.hero-layout {
+  justify-content: flex-start;
+  padding-top: 5vh;
+  gap: 0.5vh;
+  /* Minimal gap between all elements */
+}
+
+
+/* --- BACKGROUND LAYERS --- */
+/* CRITICAL: Fixed background wrapper must not intercept pointer events */
+.fixed-background {
+  pointer-events: none;
+}
+
+.bg-image-layer {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  opacity: 0.7;
+  /* Make background visible */
+  animation: smokeBreathe 20s ease-in-out infinite alternate;
+  pointer-events: none;
+  /* Ensure background doesn't block interactions */
+  will-change: transform, filter;
+  transform: translate3d(0, 0, 0);
+  /* GPU acceleration */
+}
+
+@keyframes smokeBreathe {
+  from {
+    filter: brightness(0.9) saturate(1.1);
+    transform: scale(1);
+  }
+
+  to {
+    filter: brightness(1.05) saturate(1.2);
+    transform: scale(1.02);
+  }
+}
+
+/* =========================================
+   UPDATED: REALISTIC WISPY SMOKE
+========================================= */
+.smoke-emitter {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  /* Large area for spread */
+  z-index: 1;
+  pointer-events: none;
+  /* Blur softens the edges to look like gas */
+  filter: blur(50px);
+  opacity: 0.6;
+  /* Reduced overall visibility for subtlety */
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  /* GPU acceleration */
+}
+
+/* Positioning */
+.bottom-emitter {
+  bottom: -200px;
+}
+
+.top-emitter {
+  top: -200px;
+}
+
+.side-left {
+  left: -200px;
+}
+
+.side-right {
+  right: -200px;
+}
+
+/* Base Smoke Cloud */
+.smoke-puff {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  transform-origin: center center;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  /* GPU acceleration */
+}
+
+
+/* --- COLORS --- */
+
+/* LEFT = RED (Use Ellipse for non-ball shape) */
+.side-left .smoke-puff {
+  background: radial-gradient(ellipse at center, rgba(200, 20, 10, 0.6) 0%, rgba(100, 0, 0, 0.2) 50%, transparent 70%);
+}
+
+/* RIGHT = BLUE (Use Ellipse for non-ball shape) */
+.side-right .smoke-puff {
+  background: radial-gradient(ellipse at center, rgba(20, 50, 180, 0.6) 0%, rgba(0, 20, 100, 0.2) 50%, transparent 70%);
+}
+
+
+/* --- ANIMATIONS --- */
+/* Left side rises and drifts right */
+.side-left .smoke-puff {
+  animation: smokeDriftRight 15s infinite ease-out;
+}
+
+/* Right side rises and drifts left */
+.side-right .smoke-puff {
+  animation: smokeDriftLeft 15s infinite ease-out;
+}
+
+
+@keyframes smokeDriftRight {
+  0% {
+    transform: scale(0.5) translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  /* Fade in slowly */
+  60% {
+    opacity: 0.3;
+    transform: scale(2) translate(150px, -20vh) rotate(45deg);
+  }
+
+  100% {
+    transform: scale(3) translate(300px, -40vh) rotate(90deg);
+    opacity: 0;
+  }
+
+  /* Vanish completely */
+}
+
+@keyframes smokeDriftLeft {
+  0% {
+    transform: scale(0.5) translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  60% {
+    opacity: 0.3;
+    transform: scale(2) translate(-150px, -20vh) rotate(-45deg);
+  }
+
+  100% {
+    transform: scale(3) translate(-300px, -40vh) rotate(-90deg);
+    opacity: 0;
+  }
+}
+
+/* Variation in puff sizes/positions to break the "ball" look */
+.p1 {
+  width: 400px;
+  height: 300px;
+  animation-delay: 0s;
+  bottom: 0;
+}
+
+.p2 {
+  width: 350px;
+  height: 400px;
+  animation-delay: 4s;
+  bottom: 50px;
+  left: 50px;
+}
+
+.p3 {
+  width: 500px;
+  height: 350px;
+  animation-delay: 8s;
+  bottom: -50px;
+  right: 0px;
+}
+
+.p4 {
+  width: 300px;
+  height: 300px;
+  animation-delay: 2s;
+  bottom: 100px;
+}
+
+.p5 {
+  width: 450px;
+  height: 400px;
+  animation-delay: 6s;
+  bottom: 0;
+  right: 50px;
+}
+
+
+
+/* Layer 3: GLITTER SPARKS */
+.particles-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 5px #fff, 0 0 10px var(--neon-blue);
+  animation: sparkTwinkle linear infinite;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  /* GPU acceleration */
+}
+
+.particle-spark:nth-child(even) {
+  box-shadow: 0 0 5px #fff, 0 0 10px var(--neon-red);
+}
+
+@keyframes sparkTwinkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 15px #fff, 0 0 25px var(--neon-blue);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+
+/* Layer 4: LIGHTER Overlay */
+.hero-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.1) 20%, var(--bg-dark-translucent) 90%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* --- SECTIONS & LAYOUT --- */
+.home-section {
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  /* Removed scroll-snap-align and scroll-margin-top for smooth scrolling */
+}
+
+/* --- HERO LAYOUT --- */
+.hero-layout {
+  justify-content: flex-start;
+  padding-top: 8vh;
+  gap: 2.5vh;
+}
+
+/* 1. Logo Area */
+/* 1. Logo Area */
+.logo-area {
+  flex-shrink: 0;
+  perspective: 1000px;
+  /* Adds depth for the glow */
+}
+
+.hero-logo {
+  /* INCREASED SIZE (Mobile) */
+  height: 180px;
+  width: auto;
+
+  /* Initial State */
+  opacity: 0;
+
+  /* Animations: 
+     1. Entrance (Slide down)
+     2. Blue Pulse (Glow on/off infinite) 
+     3. Hover (Float effect) 
+  */
+  animation:
+    logoEntrance 1.5s ease-out forwards,
+    logoBluePulse 3s infinite ease-in-out 1.5s;
+  /* Starts after entrance */
+
+  transition: transform 0.3s ease;
+}
+
+/* INCREASED SIZE (Desktop/Laptop) */
+@media (min-width: 992px) {
+  .hero-logo {
+    height: 280px;
+    /* Much bigger */
+  }
+}
+
+/* --- ANIMATIONS --- */
+
+/* Entrance: Slides down and fades in */
+@keyframes logoEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+    filter: drop-shadow(0 0 0 rgba(0, 242, 255, 0));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.3));
+  }
+}
+
+/* THE GLOW ANIMATION */
+/* 1. Logo Area */
+.logo-area {
+  flex-shrink: 0;
+  perspective: 1000px;
+}
+
+.hero-logo {
+  /* SIZE SETTINGS */
+  height: 180px;
+  width: auto;
+
+  /* Initial State */
+  opacity: 0;
+
+  /* ANIMATION SETTINGS 
+     - Duration increased to 4s for a slower, smoother breathe 
+     - 'infinite' makes it loop forever
+     - 'ease-in-out' makes the speed curve smooth at both ends
+  */
+  animation:
+    logoEntrance 1.5s ease-out forwards,
+    logoBluePulse 4s infinite ease-in-out 1.5s;
+
+  transition: transform 0.3s ease;
+  will-change: filter, transform;
+  /* Optimization for smooth rendering */
+}
+
+/* DESKTOP SIZE */
+@media (min-width: 992px) {
+  .hero-logo {
+    height: 280px;
+  }
+}
+
+/* --- ANIMATIONS --- */
+
+@keyframes logoEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* SMOOTH PULSE ANIMATION */
+@keyframes logoBluePulse {
+
+  /* START: Dim (Low Glow) */
+  0% {
+    filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.2)) brightness(1);
+    transform: scale(1);
+  }
+
+  /* MIDDLE: Bright (High Glow & Blue Lines Pop) */
+  50% {
+    filter: drop-shadow(0 0 40px rgba(0, 242, 255, 0.8)) brightness(1.3);
+    transform: scale(1.03);
+    /* Slight zoom in */
+  }
+
+  /* END: Dim (Must match 0% exactly for smooth loop) */
+  100% {
+    filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.2)) brightness(1);
+    transform: scale(1);
+  }
+}
+
+
+/* 2. Main Title Wrapper */
+.title-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  perspective: 1000px;
+}
+
+/* --- TEXT STYLES --- */
+.cyber-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 900;
+  line-height: 0.9;
+  color: #fff;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  transform: rotateX(20deg);
+  filter: blur(10px);
+}
+
+.top-text {
+  text-shadow: 0 0 20px var(--neon-blue);
+  animation: textPowerUp 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s forwards;
+}
+
+.bottom-text {
+  font-family: 'Audiowide', cursive;
+  color: var(--neon-red);
+  text-shadow: 0 0 8px var(--neon-red), 0 0 15px var(--neon-red);
+  font-size: clamp(4rem, 11vw, 7.5rem);
+  filter: brightness(0.7);
+  animation: textPowerUp 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.7s forwards;
+}
+
+@keyframes textPowerUp {
+  0% {
+    opacity: 0;
+    letter-spacing: 15px;
+    filter: blur(20px);
+    transform: rotateX(30deg) translateY(50px);
+  }
+
+  20% {
+    opacity: 1;
+    filter: blur(0px);
+    color: #fff;
+  }
+
+  100% {
+    opacity: 1;
+    letter-spacing: normal;
+    filter: blur(0px);
+    transform: rotateX(0deg) translateY(0);
+  }
+}
+
+/* --- ELECTRIC ARC --- */
+.electric-gap-arc {
+  position: relative;
+  width: 110%;
+  height: 40px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 15;
+  opacity: 0;
+  animation: arcAppearance 0.5s ease-out 1.2s forwards;
+}
+
+@keyframes arcAppearance {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.electrode {
+  width: 30px;
+  height: 40px;
+  background: #111;
+  border: 2px solid;
+  box-shadow: 0 0 15px;
+  clip-path: polygon(0% 0%, 100% 20%, 100% 80%, 0% 100%);
+}
+
+.electrode-left {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.electrode-right {
+  border-color: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
+  transform: scaleX(-1);
+}
+
+.plasma-bolt-intense {
+  flex-grow: 1;
+  height: 100%;
+  margin: 0 5px;
+  background: #fff;
+  z-index: 25;
+  clip-path: polygon(0% 45%, 15% 55%, 25% 45%, 40% 55%, 50% 45%, 65% 55%, 80% 45%, 100% 55%, 100% 45%, 85% 35%, 70% 45%, 55% 35%, 40% 45%, 25% 35%, 10% 45%, 0% 35%);
+  filter: drop-shadow(0 0 10px var(--neon-blue)) drop-shadow(0 0 20px var(--neon-red)) drop-shadow(0 0 40px #fff);
+  animation: lightningViolent 0.1s infinite linear;
+}
+
+@keyframes lightningViolent {
+  0% {
+    clip-path: polygon(0% 48%, 20% 52%, 40% 45%, 60% 55%, 80% 48%, 100% 52%, 100% 48%, 80% 42%, 60% 50%, 40% 40%, 20% 48%, 0% 42%);
+  }
+
+  50% {
+    clip-path: polygon(0% 52%, 15% 45%, 35% 55%, 55% 45%, 75% 55%, 95% 45%, 100% 50%, 100% 54%, 85% 48%, 65% 58%, 45% 48%, 25% 58%, 5% 48%, 0% 54%);
+    background: var(--neon-blue);
+  }
+
+  100% {
+    clip-path: polygon(0% 45%, 25% 55%, 50% 45%, 75% 55%, 100% 45%, 100% 50%, 80% 40%, 60% 50%, 40% 40%, 20% 50%, 0% 40%);
+    background: var(--neon-red);
+  }
+}
+
+
+/* --- 3. SUBTITLE AREA --- */
+.subtitle-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 2s forwards;
+  margin-top: 1vh;
+  gap: 5px;
+}
+
+.subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #eee;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+.main-sub {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700;
+}
+
+.symposium-sub {
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
+  font-weight: 500;
+  color: #ccc;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.subtitle-line {
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-red), transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 20px var(--neon-blue), 0 0 20px var(--neon-red);
+  position: relative;
+}
+
+.subtitle-line::before,
+.subtitle-line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+}
+
+.subtitle-line::before {
+  left: 0;
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.subtitle-line::after {
+  right: 0;
+  box-shadow: 0 0 15px var(--neon-red);
+}
+
+
+/* --- PAGE 2 (CENTERED) --- */
+.page-two-container {
+  padding: 2rem;
+  justify-content: center;
+}
+
+.page-two-content {
+  margin: auto;
+  background: rgba(10, 10, 15, 0.8);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.revealed-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* COUNTDOWN TIMER */
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  /* Increased gap */
+  /* Minimal gap */
+  margin: 0;
+  /* No margin - keep tight */
+  z-index: 15;
+  position: relative;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 2s forwards;
+}
+
+.countdown-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  /* Increased size */
+  /* Reduced from 1.2rem */
+  color: var(--neon-blue);
+  letter-spacing: 3px;
+  /* Reduced from 4px */
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 20px;
+  /* Increased gap */
+  /* Reduced gap between time boxes */
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  /* Increased width */
+  /* Reduced from 80px */
+  padding: 15px;
+  /* Increased padding */
+  /* Reduced from 15px */
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  /* Reduced from 15px */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.time-box:nth-child(1) {
+  border-top: 3px solid var(--neon-red);
+}
+
+.time-box:nth-child(3) {
+  border-top: 3px solid var(--neon-blue);
+}
+
+.time-box:nth-child(5) {
+  border-top: 3px solid var(--neon-red);
+}
+
+.time-box:nth-child(7) {
+  border-top: 3px solid var(--neon-blue);
+}
+
+.time-box:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 242, 255, 0.3);
+  border-color: var(--neon-blue);
+}
+
+.time-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  /* Increased size */
+  /* Reduced from 3rem */
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  line-height: 1;
+}
+
+.time-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.time-separator {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  /* Reduced from 2.5rem */
+  color: var(--neon-blue);
+  font-weight: 700;
+  text-shadow: 0 0 15px rgba(0, 242, 255, 0.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.event-date {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  /* Increased size */
+  /* Increased from 1.1rem */
+  color: var(--neon-red);
+  letter-spacing: 3.5px;
+  font-weight: 1000;
+  /* Increased from 600 to make it bold */
+  text-shadow: 0 0 15px rgba(255, 42, 42, 0.6);
+  margin-top: 20px;
+  /* Added spacing */
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+a.register-button-home {
+  padding: 1.2rem 4rem;
+  font-family: 'Orbitron';
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: bold;
+  background: linear-gradient(45deg, rgba(0, 242, 255, 0.2), rgba(255, 0, 60, 0.2));
+  border: 2px solid var(--neon-blue);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.4s;
+  letter-spacing: 2px;
+}
+
+a.register-button-home:hover {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 40px var(--neon-blue), 0 0 10px #fff;
+  border-color: #fff;
+}
+
+/* --- SUBTITLE AREA (UPDATED) --- */
+.subtitle-area {
+  margin-top: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* 1. XENOTRIX - HUGE, BOLD, METALLIC */
+.main-sub {
+  font-family: 'Share Tech Mono', monospace;
+  /* Digital Clock Font */
+  font-size: 6rem;
+  /* Huge Size */
+  font-weight: 400;
+  /* Digital fonts are usually standard weight */
+  text-transform: uppercase;
+  letter-spacing: 12px;
+  /* Wide LED spacing */
+  margin: 0;
+  line-height: 1;
+
+  /* Bright LED White */
+  color: #ffffff;
+
+  /* Digital Glow Effect (Blue/Cyan LED look) */
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(0, 242, 255, 0.8),
+    0 0 40px rgba(0, 242, 255, 0.5);
+
+  /* Slight Flicker to mimic electronics */
+  animation: digitalFlicker 0.1s infinite alternate;
+  /* Note: To make it blink slower, change 0.1s to 2s */
+}
+
+@keyframes slightPulse {
+  from {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+  }
+
+  to {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
+  }
+}
+
+/* 2. SYMPOSIUM DESCRIPTION - LARGER & CLEARER */
+.symposium-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.6rem;
+  /* Increased Size */
+  font-weight: 700;
+  /* Bold */
+  letter-spacing: 3px;
+  color: #e0f7ff;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
+  opacity: 0.9;
+}
+
+/* 3. The Line Below */
+.subtitle-line {
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #00f2ff, transparent);
+  margin: 0 auto;
+  box-shadow: 0 0 15px #00f2ff;
+}
+
+/* --- RESPONSIVE MOBILE FIXES --- */
+@media (max-width: 768px) {
+  .main-sub {
+    font-size: 3.2rem;
+    /* Still very large on phone */
+    letter-spacing: 5px;
+  }
+
+  .symposium-sub {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    width: 90%;
+    margin: 10px auto 20px auto;
+  }
+}
+
+/* =========================================
+   SCROLL DOWN INDICATOR (NEON RED/BLUE FLOW)
+========================================= */
+
+/* =========================================
+   SCROLL DOWN INDICATOR (BRIGHT & LARGE)
+========================================= */
+.scroll-indicator {
+  position: relative;
+  bottom: 120px;
+  /* Moved further down */
+  left: auto;
+  transform: none;
+
+  /* Positioning below title */
+  margin-top: 120px;
+  padding-bottom: 120px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  pointer-events: auto;
+
+  opacity: 0;
+  animation: fadeInScroll 1s ease-out 3.5s forwards;
+}
+
+@keyframes fadeInScroll {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 1. BRIGHT CLEAR TEXT */
+.scroll-text {
+  font-family: 'Orbitron', sans-serif;
+
+  /* INCREASED SIZE */
+  font-size: 1.5rem;
+  /* Was 0.9rem */
+  font-weight: 800;
+  /* Extra Bold */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+
+  /* PURE WHITE for maximum clarity */
+  color: #ffffff;
+
+  /* INTENSE NEON RED GLOW */
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ff003c,
+    0 0 20px #ff003c,
+    0 0 40px #ff003c;
+
+  animation: pulseBrightRed 1.5s infinite alternate;
+}
+
+@keyframes pulseBrightRed {
+  from {
+    opacity: 0.8;
+    text-shadow: 0 0 10px #ff003c;
+  }
+
+  to {
+    opacity: 1;
+    text-shadow: 0 0 20px #ff003c, 0 0 40px #ff003c;
+  }
+}
+
+/* 2. ARROW CONTAINER */
+.chevron-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30px;
+  /* Increased height for larger arrows */
+}
+
+/* 3. ARROWS (Larger & Thicker) */
+.chevron {
+  width: 28px;
+  height: 28px;
+  /* Increased from 20px */
+  border-bottom: 5px solid;
+  /* Thicker lines */
+  border-right: 5px solid;
+  transform: rotate(45deg);
+  margin: -10px 0;
+  opacity: 0;
+  animation: neonArrowFlow 1s infinite ease-in-out;
+}
+
+/* Animation Flow */
+@keyframes neonArrowFlow {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(0px, 0px);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(15px, 15px);
+  }
+}
+
+/* --- ARROW COLORS --- */
+.chevron:nth-child(1) {
+  border-color: #ff003c;
+  filter: drop-shadow(0 0 8px #ff003c);
+  animation-delay: 0s;
+}
+
+.chevron:nth-child(2) {
+  border-color: #ffffff;
+  /* White middle for contrast */
+  filter: drop-shadow(0 0 8px #ff003c);
+  animation-delay: 0.3s;
+}
+
+.chevron:nth-child(3) {
+  border-color: #ff003c;
+  filter: drop-shadow(0 0 8px #ff003c);
+  animation-delay: 0.6s;
+}
