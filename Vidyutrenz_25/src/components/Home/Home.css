@@ -1101,15 +1101,6 @@ a.register-button-home:hover {
 
 /* Tablet and smaller */
 @media (max-width: 768px) {
-
-  /* Move content down by reducing top padding */
-  .hero-layout {
-    padding-top: 2vh;
-    /* Reduced from 5vh to move content down */
-    gap: 1.5vh;
-    /* Increase spacing between elements */
-  }
-
   .countdown-timer {
     gap: 10px;
     /* Reduce gap between boxes */
