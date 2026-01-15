@@ -1104,30 +1104,30 @@ a.register-button-home:hover {
 
   /* Slightly larger text sizes for mobile */
   .cyber-text {
-    font-size: clamp(4rem, 11vw, 8rem);
-    /* Slightly increased */
+    font-size: clamp(4.5rem, 12vw, 8.5rem);
+    /* Increased more */
   }
 
   .bottom-text {
-    font-size: clamp(4.5rem, 12vw, 8.5rem);
-    /* Slightly increased */
+    font-size: clamp(5rem, 13vw, 9rem);
+    /* Increased more */
   }
 
   .main-sub {
-    font-size: 3.5rem;
-    /* Increased from 3.2rem */
+    font-size: 4rem;
+    /* Increased from 3.5rem to 4rem */
     letter-spacing: 6px;
   }
 
   .symposium-sub {
-    font-size: 1.2rem;
-    /* Increased from 1.1rem */
+    font-size: 1.7rem;
+    /* Increased from 1.2rem to 1.7rem */
     letter-spacing: 2px;
   }
 
   .countdown-label {
-    font-size: 1.6rem;
-    /* Slightly larger */
+    font-size: 2.1rem;
+    /* Increased from 1.6rem to 2.1rem */
   }
 
   .countdown-timer {
@@ -1159,14 +1159,14 @@ a.register-button-home:hover {
   }
 
   .event-date {
-    font-size: 2.3rem;
-    /* Increased from 2rem */
+    font-size: 2.8rem;
+    /* Increased from 2.3rem to 2.8rem */
     letter-spacing: 2px;
   }
 
   .scroll-text {
-    font-size: 1.6rem;
-    /* Slightly larger */
+    font-size: 2.1rem;
+    /* Increased from 1.6rem to 2.1rem */
   }
 }
 
