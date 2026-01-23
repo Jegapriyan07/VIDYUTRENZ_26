@@ -16,7 +16,7 @@ const About = () => {
           </div>
 
           <h3 className="about-description">
-            At Vidyutrenz, we are at the forefront of electrical engineering and technology,
+            At Vidyutrenz, we are at the forefront of electronics engineering and technology,
             delivering innovative, scalable, and efficient solutions that drive system performance
             and operational efficiency.
             <br /><br />
