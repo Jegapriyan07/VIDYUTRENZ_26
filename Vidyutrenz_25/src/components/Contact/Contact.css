@@ -449,11 +449,21 @@
   .contact-page {
     padding: 680px 20px 60px;
     /* Extreme top padding for mobile to completely clear all overlaps */
+    z-index: -1;
+    /* Negative z-index to ensure it doesn't block event cards above */
+    position: relative;
   }
 
   .contact-header {
     margin-bottom: 80px;
     /* Maximum spacing below header */
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-container {
+    position: relative;
+    z-index: 1;
   }
 
   .contact-info-grid {
