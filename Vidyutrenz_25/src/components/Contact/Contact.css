@@ -447,12 +447,12 @@
 
 @media (max-width: 768px) {
   .contact-page {
-    padding: 580px 20px 60px;
+    padding: 680px 20px 60px;
     /* Extreme top padding for mobile to completely clear all overlaps */
   }
 
   .contact-header {
-    margin-bottom: 130px;
+    margin-bottom: 80px;
     /* Maximum spacing below header */
   }
 
