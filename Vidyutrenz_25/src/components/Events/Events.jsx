@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Events.css";
 import Tech from "./../../assets/tech_logo.png";
 import Workshop from "./../../assets/workshop_logo.png";
+import NonTech from "./../../assets/nontech_logo.png";
 import BackgroundImage from "./../../assets/BG_SMOKE.jpg";
 
 const Events = () => {
@@ -49,6 +50,21 @@ const Events = () => {
           <div className="event-overlay">
             <h3>Workshop</h3>
             <p>Register for our Workshop Events and Win Exciting Prizes</p>
+          </div>
+        </div>
+
+        {/* Non Technical Event - RED THEME */}
+        <div
+          className="event-card red-theme"
+          style={{ backgroundImage: `url(${NonTech})` }}
+          onClick={() => handleEventClick("NonTechnical")}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && handleEventClick("NonTechnical")}
+        >
+          <div className="event-overlay">
+            <h3>Non Technical</h3>
+            <p>Online Gaming & Entertainment Events</p>
           </div>
         </div>
       </div>

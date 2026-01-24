@@ -20,6 +20,9 @@ import work_5 from "./../../assets/work_5.png";
 import work_6 from "./../../assets/work_6.png";
 import work_7 from "./../../assets/work_7.png";
 import work_8 from "./../../assets/work_8.png";
+import nontech_1 from "./../../assets/nontech_1.png";
+import nontech_2 from "./../../assets/nontech_2.png";
+import nontech_3 from "./../../assets/nontech_3.png";
 import tech_1_pdf from "./../../assets/tech_1.pdf";
 import tech_2_pdf from "./../../assets/tech_2.pdf";
 import tech_3_pdf from "./../../assets/tech_3.pdf";
@@ -38,6 +41,9 @@ import work_5_pdf from "./../../assets/work_5.pdf";
 import work_6_pdf from "./../../assets/work_6.pdf";
 import work_7_pdf from "./../../assets/work_7.pdf";
 import work_8_pdf from "./../../assets/work_8.pdf";
+import nontech_1_pdf from "./../../assets/nontech_1.pdf";
+import nontech_2_pdf from "./../../assets/nontech_2.pdf";
+import nontech_3_pdf from "./../../assets/nontech_3.pdf";
 const EventsCard = () => {
   const { eventType } = useParams();
   const navigate = useNavigate();
@@ -47,7 +53,7 @@ const EventsCard = () => {
   const eventData = {
     technical: [
       { id: 1, title: "Prototype Parade", description: "Showcase your innovative prototypes and engineering marvels in this exciting exhibition.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "1 to 3 Members", venue: "TBD", coordinators: "Jyothilalitha P ( 9444941814 )", bgImage: tech_1, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfZTzzVJ6OPhUlpkySwsJksrXybXjdVNHBv2OfiaylUvqsfNw/viewform", rulesLink: tech_1_pdf },
-      { id: 2, title: "Hypothesis Hub", description: "Present your research papers and innovative ideas to expert judges and win exciting prizes.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "₹250 / No refund ", teamSize: "1 to 5 Members", venue: "TBD", coordinators: "Shanmugapriya I ( 6374761932 ) & Abhinauv ( 6374471714 )", bgImage: tech_2, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdCDWFRhIXxEoIbzCnjuKD0SEHzoOdPaiiryWwfCP45oEtowA/viewform", rulesLink: tech_2_pdf },
+      { id: 2, title: "Hypothesis Hub", description: "Present your research papers and innovative ideas to expert judges and win exciting prizes.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "₹250 / No refund", teamSize: "1 to 5 Members", venue: "TBD", coordinators: "Shanmugapriya I ( 6374761932 ) & Abhinauv ( 6374471714 )", bgImage: tech_2, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdCDWFRhIXxEoIbzCnjuKD0SEHzoOdPaiiryWwfCP45oEtowA/viewform", rulesLink: tech_2_pdf },
       { id: 3, title: "Tech IQ Royale", description: "Test your technical knowledge and quick thinking in this ultimate tech quiz battle.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "1 to 2 Members", venue: "TBD", coordinators: " Yokeshwar B S ( 8807938693 )", bgImage: tech_3, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdWqnlyJTQYiSDWHHFKpKivmlOQZ5JfZQTmoZE4bAEr_Prr-g/viewform", rulesLink: tech_3_pdf },
       { id: 4, title: "CoreCode Championship", description: "Compete in intense coding challenges and prove your programming prowess.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "Individual", venue: "TBD", coordinators: "Priyanka S ( 8667098201 )", bgImage: tech_4, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSc6dseKdUswSZ2YXLoREC5-G8pwFzpcf_-6-Omjvm-H04wBFQ/viewform", rulesLink: tech_4_pdf },
       { id: 5, title: "Duel of Pathfinder", description: "Navigate through complex challenges and find optimal solutions in this strategic competition.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "1 to 4 Members", venue: "TBD", coordinators: "SACHWIN KANTH A ( 8610407856 )", bgImage: tech_5, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeWYRlRC8W4_M0rcxOj_3UvSGM2tdJ-NV3LmmcItGFXDmtxSQ/viewform", rulesLink: tech_5_pdf },
@@ -55,7 +61,7 @@ const EventsCard = () => {
       { id: 7, title: "Signal Charades", description: "Decode signals and communicate effectively in this exciting technical charades game.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "1 to 2 Members", venue: "TBD", coordinators: " Vengatesan R ( 7448919629 )", bgImage: tech_7, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLScUIx2rcj3FCuZ_A-bP319AX1u1w-9_GtxWt9ZcR3i_PbWmoA/viewform", rulesLink: tech_7_pdf },
       { id: 8, title: "Pitch It On", description: "Present your innovative business ideas and startup concepts to win investor attention.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "1 to 2 Members", venue: "TBD", coordinators: " Mohammed Abrar ( 8637452592 )", bgImage: tech_8, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdoBt3q-366HkYLPMMFAcDL7ie6tlkbdxdFI2g866wowpw_2w/viewform", rulesLink: tech_8_pdf },
       { id: 9, title: "Embedded Treasure Hunt", description: "Solve embedded systems puzzles and hunt for technical treasures in this adventure.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "2 to 4 Members", venue: "TBD", coordinators: "Gautham Suresh ( 9176163207 ) & A Athul Krishna ( 9344964309 )", bgImage: tech_9, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSd4YZUqCvSq2f7LVqUhpqaukkJ-FiPjhnzgOonOh4TSpHsRwg/viewform", rulesLink: tech_9_pdf },
-      { id: 10, title: "Tech Without Tech", description: "Explain complex ECE concepts using only analogies and storytelling—no jargon allowed!", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "1 to 2 Members", venue: "TBD", coordinators: "Abhirami D ( 9444506320 ) & Gautham Suresh ( 9176163207 )", bgImage: tech_10, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSf7m_xzIGB3Yuf6ep19IaRIFp1NVHmJYpTqNGXfa1YF4pzmSA/viewform", rulesLink: tech_10_pdf },
+      { id: 10, title: "CONCEPT OVER CODE", description: "Explain complex ECE concepts using only analogies and storytelling—no jargon allowed!", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1500", prize_2: "₹1000", prize_3: "₹500", registrationFee: "Free Entry", teamSize: "1 to 2 Members", venue: "TBD", coordinators: "Abhirami D ( 9444506320 ) & Gautham Suresh ( 9176163207 )", bgImage: tech_10, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSf7m_xzIGB3Yuf6ep19IaRIFp1NVHmJYpTqNGXfa1YF4pzmSA/viewform", rulesLink: tech_10_pdf },
     ],
     workshop: [
       { id: 1, title: "IoT with Robotics", description: "Learn IoT fundamentals and build robotic systems with hands-on projects.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹180 / No refund ", teamSize: "Individual", venue: "IoT Lab", coordinators: "Nishalini ( 9940759155 )", bgImage: work_1, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSf39s0NmLOLH-2Zbnax0mCbutEzYkNGMFFWamvdYNjvlZMRGw/viewform", rulesLink: work_1_pdf },
@@ -66,6 +72,11 @@ const EventsCard = () => {
       { id: 6, title: "Nanotechnology & Material Synthesis", description: "Explore nanomaterials and learn advanced synthesis techniques.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹200 / No refund ", teamSize: "Individual", venue: "Nano Lab", coordinators: "Rajarajan S A ( 9025392252 )", bgImage: work_6, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSf0c8r_e1Usu8-8i8nJGtZdOe0FTQqdBH1PDpuvuBnA7uFWEA/viewform", rulesLink: work_6_pdf },
       { id: 7, title: "Synopsys", description: "Learn to create professional research synopsys and technical documentation.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹180 / No refund ", teamSize: "Individual", venue: "TBD", coordinators: "VISHVESH B ( 6383941462 )", bgImage: work_7, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfzemTG-o1phamMrzAnp1I0RsaAVLzLRX_s_5z8ZQS_lu3LZg/viewform", rulesLink: work_7_pdf },
       { id: 8, title: "Spin-Powered Probabilistic AI", description: "Explore cutting-edge probabilistic AI models powered by spin-based computing architectures.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹180 / No refund ", teamSize: "Individual", venue: "TBD", coordinators: "TRIJAL ( 6379791779 )", bgImage: work_8, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeXDyimTIV5qBRHw-5bBL8Mblg9uX7ZaRXBWyBfmpgVxLNfeg/viewform", rulesLink: work_8_pdf },
+    ],
+    nontechnical: [
+      { id: 1, title: "Gaming Arena - Free Fire", description: "Compete in intense Free Fire matches and dominate the arena in this ultimate battle royale tournament.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1000", prize_2: "₹500", registrationFee: "Free Entry", teamSize: "4 Members", venue: "Online Platform", coordinators: "AASHISH D ( 6383942360 )", bgImage: nontech_1, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeUj-fuOBChKbL5OetSlHrQyR0d9zCUwt5u7Z-tma2pMJDgAA/viewform", rulesLink: nontech_1_pdf },
+      { id: 2, title: "Gaming Arena - E Football", description: "Step into the virtual pitch and lead your team to victory in this thrilling E Football championship.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1000", prize_2: "₹500", registrationFee: "Free Entry", teamSize: "Individual", venue: "Online Platform", coordinators: "Aditya R ( 8122760523 )", bgImage: nontech_2, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdrseXMe64PJHO-_vRsUNBrpvt2zO4LTK-EwdXpSrxolu42KQ/viewform", rulesLink: nontech_2_pdf },
+      { id: 3, title: "FDFS - Movie Maniac", description: "Test your film knowledge in this exciting movie trivia competition and prove you're the ultimate Movie Maniac!", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1000", prize_2: "₹500", registrationFee: "Free Entry", teamSize: "2 to 3 Members", venue: "Online Platform", coordinators: "Kishore K ( 7709752756 )", bgImage: nontech_3, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLScXtwd_9UkyBNU2a5Dq_5uxpci0mhvxSuxvE5tEugUZpjcYxg/viewform", rulesLink: nontech_3_pdf },
     ],
   };
 
@@ -98,7 +109,7 @@ const EventsCard = () => {
         >
           <span className="ecards-back-arrow">←</span> Back to Events
         </button>
-        <h1 className="ecards-title">{eventType} Events</h1>
+        <h1 className="ecards-title">{eventType === 'Non-Technical' ? 'Non - Technical Events' : `${eventType} Events`}</h1>
       </div>
 
       <div className="ecards-grid">
@@ -128,6 +139,12 @@ const EventsCard = () => {
                   <span className="ecards-info-label">Date</span>
                   <span className="ecards-info-value">{event.date}</span>
                 </div>
+                {event.mode && (
+                  <div className="ecards-info-item">
+                    <span className="ecards-info-label">Mode</span>
+                    <span className="ecards-info-value">{event.mode}</span>
+                  </div>
+                )}
                 <div className="ecards-info-item">
                   <span className="ecards-info-label">Time</span>
                   <span className="ecards-info-value">{event.time}</span>
@@ -140,7 +157,9 @@ const EventsCard = () => {
                   <span className="ecards-info-label">Prizes</span>
                   <span className="ecards-info-value">
                     {event.prize_1
-                      ? `${event.prize_1} / ${event.prize_2} / ${event.prize_3}${eventType?.toLowerCase() === 'technical' ? ' + Certification' : ''}`
+                      ? event.prize_3
+                        ? `${event.prize_1} / ${event.prize_2} / ${event.prize_3}${eventType?.toLowerCase() === 'technical' ? ' + Certification' : ''}`
+                        : `${event.prize_1} / ${event.prize_2} + Certification`
                       : event.prize
                     }
                   </span>
