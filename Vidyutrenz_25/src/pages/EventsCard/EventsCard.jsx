@@ -20,6 +20,7 @@ import work_5 from "./../../assets/work_5.png";
 import work_6 from "./../../assets/work_6.png";
 import work_7 from "./../../assets/work_7.png";
 import work_8 from "./../../assets/work_8.png";
+import work_9 from "./../../assets/work_9.png";
 import nontech_1 from "./../../assets/nontech_1.png";
 import nontech_2 from "./../../assets/nontech_2.png";
 import nontech_3 from "./../../assets/nontech_3.png";
@@ -41,6 +42,7 @@ import work_5_pdf from "./../../assets/work_5.pdf";
 import work_6_pdf from "./../../assets/work_6.pdf";
 import work_7_pdf from "./../../assets/work_7.pdf";
 import work_8_pdf from "./../../assets/work_8.pdf";
+import work_9_pdf from "./../../assets/work_9.pdf";
 import nontech_1_pdf from "./../../assets/nontech_1.pdf";
 import nontech_2_pdf from "./../../assets/nontech_2.pdf";
 import nontech_3_pdf from "./../../assets/nontech_3.pdf";
@@ -72,6 +74,7 @@ const EventsCard = () => {
       { id: 6, title: "Nanotechnology & Material Synthesis", description: "Explore nanomaterials and learn advanced synthesis techniques.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹150 / No refund ", teamSize: "Individual", venue: "Nano Lab", coordinators: "Rajarajan S A ( 9025392252 )", bgImage: work_6, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSf0c8r_e1Usu8-8i8nJGtZdOe0FTQqdBH1PDpuvuBnA7uFWEA/viewform", rulesLink: work_6_pdf },
       { id: 7, title: "Synopsys", description: "Learn to create professional research synopsys and technical documentation.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹180 / No refund ", teamSize: "Individual", venue: "TBD", coordinators: "VISHVESH B ( 6383941462 )", bgImage: work_7, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfzemTG-o1phamMrzAnp1I0RsaAVLzLRX_s_5z8ZQS_lu3LZg/viewform", rulesLink: work_7_pdf },
       { id: 8, title: "Spin-Powered Probabilistic AI", description: "Explore cutting-edge probabilistic AI models powered by spin-based computing architectures.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹180 / No refund ", teamSize: "Individual", venue: "TBD", coordinators: "TRIJAL ( 6379791779 )", bgImage: work_8, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeXDyimTIV5qBRHw-5bBL8Mblg9uX7ZaRXBWyBfmpgVxLNfeg/viewform", rulesLink: work_8_pdf },
+      { id: 9, title: "Silicon Shadows", description: "Unmasking Vulnerabilities in the Enterprise IoT Stack", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize: "Certification", registrationFee: "₹180 / No refund ", teamSize: "Individual", venue: "TBD", coordinators: " Surenthira kumar ( 7604941140 )", bgImage: work_9, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfKOMI_tIgvdDnMzxDngrEu7JiIVbqFxfUEc1RXl9_6eOWgbQ/viewform", rulesLink: work_9_pdf },
     ],
     nontechnical: [
       { id: 1, title: "Gaming Arena - Free Fire", description: "Compete in intense Free Fire matches and dominate the arena in this ultimate battle royale tournament.", date: "Feb 06, 2026", time: "9.00 AM to 2:30 PM", prize_1: "₹1000", prize_2: "₹500", registrationFee: "Free Entry", teamSize: "4 Members", venue: "Online Platform", coordinators: "AASHISH D ( 6383942360 )", bgImage: nontech_1, registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeUj-fuOBChKbL5OetSlHrQyR0d9zCUwt5u7Z-tma2pMJDgAA/viewform", rulesLink: nontech_1_pdf },
