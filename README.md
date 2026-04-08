@@ -2,7 +2,7 @@
 
 Official symposium website developed for the ECE Department Symposium VIDYUTRENZ at Chennai Institute of Technology.
 
-🌐 Live Website: https://vidyutrenz.in/
+🌐 Live Website: https://vidyutrenz-26.vercel.app/
 
 📌 Overview
 
