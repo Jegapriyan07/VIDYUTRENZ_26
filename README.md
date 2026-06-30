@@ -1,6 +1,6 @@
 ⚡ VIDYUTRENZ Symposium Website
 
-Official symposium website developed for the ECE Department Symposium VIDYUTRENZ at Chennai Institute of Technology.
+Official symposium website developed WEB DEVELOPMENT HEAD for the ECE Department Symposium VIDYUTRENZ at Chennai Institute of Technology.
 
 🌐 Live Website: https://vidyutrenz-26.vercel.app/
 
